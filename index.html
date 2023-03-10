@@ -97,7 +97,6 @@
 		        		window.location.href = str;
 		        	}, 1500);
 		        }else {
-					var left = $('.password').css('left');
 				    for (i = 1; i < 7; i++) {
 				        $('.password').animate({
 				            'left': '-=5'
@@ -109,7 +108,7 @@
 				                    'left': '-=5'
 				                }, 3, function() {
 				                    $(this).animate({
-				                        'left': left
+				                        'left': '100%'
 				                    }, 3, function() {});
 				                });
 				            });
