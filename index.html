@@ -1,1 +1,123 @@
-YES!
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>泰姆瑞尔大陆游记 - The Adventures of Tamriel</title>
+	<link rel="icon" href="/image/avatar.jpg" type="image/x-icon">
+	<script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+	<script src="/script/crypto-js.js"></script>
+	<style type="text/css">
+		html, body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			background-color: #fff;
+			overflow-x: hidden;
+		}
+		.door-left {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 50%;
+			height: 100%;
+			border-right: 2px solid #000;
+			background: linear-gradient(to left, #1a2433 0%, #253449 80%, #253449 100%);
+		}
+		.door-right {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 50%;
+			height: 100%;
+			border-left: 2px solid #000;
+			background: linear-gradient(to right, #1a2433 0%, #253449 80%, #253449 100%);
+		}
+		.door-left>.avatar {
+			position: absolute;
+			width: 160px;
+			height: 160px;
+			border-radius: 50%;
+			top: 50%;
+			left: 100%;
+			margin-top: -130px;
+			margin-left: -80px;
+			z-index: 999;
+			background-image: url("/image/avatar.jpg");
+		}
+		.door-left>.password {
+			position: absolute;
+			width: 160px;
+			height: auto;
+			top: 50%;
+			left: 100%;
+			margin-top: 50px;
+			margin-left: -90px;
+			z-index: 999;
+		}
+		.door-left>.password>input {
+			width: 160px;
+			height: auto;
+			background-color: #000;
+			border: 2px #000 solid;
+			color: #eee;
+			outline: 0;
+			text-align: center;
+			padding: 10px;
+			border-radius: 25px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="door-left">
+		<div class="avatar"></div>
+		<div class="password"><input type="password" autocomplete="off" /></div>
+	</div>
+	<div class="door-right"></div>
+</body>
+<script type="text/javascript">
+
+	$(function () {
+    	const context = 'NADz7CjGHGCFH9a98I9rMpLo3QY/ydaQi/Shh5GywCI=';
+		$('.password>input').on('keydown', function (e) {
+			if (e.keyCode === 13) {
+				var password = $(this).val();
+				var str = CryptoJS.AES.decrypt(context, CryptoJS.enc.Utf8.parse(password + password), {
+		            iv: CryptoJS.enc.Utf8.parse(password + password),
+		            mode: CryptoJS.mode.CBC,
+		            padding: CryptoJS.pad.Pkcs7
+		        }).toString(CryptoJS.enc.Utf8);
+		        if (str) {
+					$('.door-left').animate({'left': '-50%'}, 1500);
+					$('.door-right').animate({'right': '-50%'}, 1500);
+					$('.avatar').animate({'margin-left': '-160px'}, 1500);
+					$('.password').animate({'margin-left': '-200px'}, 1500);
+		        	var timer = setTimeout(function () {
+		        		window.location.href = str;
+		        	}, 1500);
+		        }else {
+					var left = $('.password').css('left');
+				    for (i = 1; i < 7; i++) {
+				        $('.password').animate({
+				            'left': '-=5'
+				        }, 3, function() {
+				            $(this).animate({
+				                'left': '+=10'
+				            }, 3, function() {
+				                $(this).animate({
+				                    'left': '-=5'
+				                }, 3, function() {
+				                    $(this).animate({
+				                        'left': left
+				                    }, 3, function() {});
+				                });
+				            });
+				        });
+				    }
+		        }
+			}
+		});
+	})
+</script>
+</html>
