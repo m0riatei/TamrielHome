@@ -1,4 +1,5 @@
 $(function () {
+	$('.password>input').focus();
 	const context = '/3sYPGmBhlnM+WHURuyyzaj4BhqPdcAOlUOj5V+MIIs=';
 	$('.password>input').on('keydown', function (e) {
 		if (e.keyCode === 13) {
@@ -18,6 +19,7 @@ $(function () {
 	        		window.location.href = str;
 	        	}, 1500);
 	        }else {
+	        	$(this).select();
 			    for (i = 1; i < 7; i++) {
 			        $('.password').animate({
 			            'left': '-=5'
