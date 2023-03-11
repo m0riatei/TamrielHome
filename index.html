@@ -22,7 +22,7 @@
 			left: 0;
 			width: 50%;
 			height: 100%;
-			border-right: 2px solid #000;
+			border-right: 5px solid #111;
 			background: linear-gradient(to left, #1a2433 0%, #253449 80%, #253449 100%);
 		}
 		.door-right {
@@ -31,41 +31,43 @@
 			right: 0;
 			width: 50%;
 			height: 100%;
-			border-left: 2px solid #000;
+			border-left: 5px solid #111;
 			background: linear-gradient(to right, #1a2433 0%, #253449 80%, #253449 100%);
 		}
 		.door-left>.avatar {
 			position: absolute;
-			width: 160px;
-			height: 160px;
+			width: 170px;
+			height: 170px;
 			border-radius: 50%;
 			top: 50%;
 			left: 100%;
-			margin-top: -130px;
-			margin-left: -80px;
+			margin-top: -150px;
+			margin-left: -90px;
 			z-index: 999;
 			background-image: url("/image/avatar.jpg");
+			background-position: 5px 5px;
+			border: 5px #111 solid;
 		}
 		.door-left>.password {
 			position: absolute;
-			width: 160px;
+			width: 190px;
 			height: auto;
 			top: 50%;
 			left: 100%;
 			margin-top: 50px;
-			margin-left: -90px;
+			margin-left: -95px;
 			z-index: 999;
 		}
 		.door-left>.password>input {
 			width: 160px;
 			height: auto;
 			background-color: #000;
-			border: 2px #000 solid;
 			color: #eee;
 			outline: 0;
 			text-align: center;
 			padding: 10px;
 			border-radius: 25px;
+			border: 5px #111 solid;
 		}
 	</style>
 </head>
@@ -92,8 +94,8 @@
 		        if (str) {
 					$('.door-left').animate({'left': '-50%'}, 1500);
 					$('.door-right').animate({'right': '-50%'}, 1500);
-					$('.avatar').animate({'margin-left': '-160px'}, 1500);
-					$('.password').animate({'margin-left': '-200px'}, 1500);
+					$('.avatar').animate({'margin-left': '-180px'}, 1500);
+					$('.password').animate({'margin-left': '-190px'}, 1500);
 		        	var timer = setTimeout(function () {
 		        		window.location.href = str;
 		        	}, 1500);
